@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace ResharperPresentation
 {
     [TestFixture]
-    public class Class1
+    public class ReSharperTests
     {
         //[Test]
         //public void TypeMismatch()
@@ -52,6 +52,13 @@ namespace ResharperPresentation
         //    myClass.Prop2 = 123;
         //}
 
+        [Test]
+        public void Using()
+        {
+            using (var myClass = new MyClass())
+            {
+            }
+        }
 
         //[Test]
         //public void Logic()
@@ -134,6 +141,12 @@ namespace ResharperPresentation
         //}
 
         [Test]
+        public void GenericTest()
+        {
+            new TestGenericOuter<int>();
+        }
+
+        [Test]
         public void Closure()
         {
             var collection = new[] { "1", "2", "3" };
@@ -191,7 +204,7 @@ namespace ResharperPresentation
         }
     }
 
-    public class BaseClass
+    public class BaseClass : IDisposable
     {
         public BaseClass()
         {
@@ -199,5 +212,20 @@ namespace ResharperPresentation
         }
 
         public virtual void MyVirtualMethod(){}
+        public void Dispose()
+        {
+            Console.WriteLine("Dispose");
+        }
     }
+
+    public class TestGeneric<T>
+    {
+        
+    }
+
+    public class TestGenericOuter<T> : TestGeneric<TestGenericOuter<TestGenericOuter<T>>>
+    {
+        
+    }
+
 }
