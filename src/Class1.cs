@@ -52,6 +52,65 @@ namespace ResharperPresentation
         //    myClass.Prop2 = 123;
         //}
 
+
+        //[Test]
+        //public void Logic()
+        //{
+        //    var a = DateTime.Now.Ticks%5 == 0;
+        //    var b = DateTime.Now.Ticks % 2 == 0;
+        //    var c = DateTime.Now.Ticks % 3 == 0;
+
+        //    if (a == b && b == c && a == c)
+        //    {
+                
+        //    }
+        //}
+
+        //public void NullReference()
+        //{
+        //    object param;
+        //    if (DateTime.Now.Ticks%4 == 0)
+        //    {
+        //        param = "qwe";
+        //    }
+        //    else
+        //    {
+        //        param = new StringBuilder();
+        //    }
+
+
+        //    var builder = param as StringBuilder;
+        //    Console.WriteLine(builder.Length);
+        //}
+
+        [Test]
+        public void CheckWithBase()
+        {
+            var myClass = new MyClass();
+
+            if (myClass is BaseClass)
+            {
+                
+            }
+        }
+
+        [Test]
+        public void VirtMethodInConstructor()
+        {
+            var myClass = new MyClass();
+
+        }
+
+        //[Test]
+        //public void ArrayCovariance()
+        //{
+        //    var stringArray = new string[2];
+        //    object[] objectArray = stringArray;
+        //    objectArray[1] = 2;
+        //}
+
+        
+
         //[Test]
         //public void AnyInsteadOfUse()
         //{
@@ -93,7 +152,7 @@ namespace ResharperPresentation
 
     }
 
-    public class MyClass
+    public class MyClass : BaseClass
     {
         public string Prop1 { get; set; }
 
@@ -118,5 +177,27 @@ namespace ResharperPresentation
         {
             Console.WriteLine(parameters[0]);
         }
+
+        private int c = 10;
+
+        public MyClass() : base()
+        {
+            c = 20;
+        }
+
+        public override void MyVirtualMethod()
+        {
+            Console.WriteLine(c);
+        }
+    }
+
+    public class BaseClass
+    {
+        public BaseClass()
+        {
+            MyVirtualMethod();
+        }
+
+        public virtual void MyVirtualMethod(){}
     }
 }
