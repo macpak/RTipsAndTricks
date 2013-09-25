@@ -141,12 +141,6 @@ namespace ResharperPresentation
         //}
 
         [Test]
-        public void GenericTest()
-        {
-            new TestGenericOuter<int>();
-        }
-
-        [Test]
         public void Closure()
         {
             var collection = new[] { "1", "2", "3" };
@@ -218,14 +212,6 @@ namespace ResharperPresentation
         }
     }
 
-    public class TestGeneric<T>
-    {
-        
-    }
-
-    public class TestGenericOuter<T> : TestGeneric<TestGenericOuter<TestGenericOuter<T>>>
-    {
-        
-    }
+    
 
 }
